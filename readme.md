@@ -15,10 +15,10 @@ docker network create vault-network
     docker run --name=aavault -p 8200:8200 --network="vault-network" --cap-add=IPC_LOCK -e 'VAULT_LOCAL_CONFIG={"listener": {"tcp": {"address": "0.0.0.0:8200", "tls_cert_file": "/vault/certs/myvault.crt", "tls_key_file": "/vault/certs/myvault.key"}}, "ui": true, "disable_mlock": "true", "backend": {"file": {"path": "/vault/data"}}}' -e 'VAULT_ADDR=https://0.0.0.0:8200' -e 'VAULT_CACERT=/vault/certs/myvault.crt' -v ./vault-certs:/vault/certs -v ./vault-data:/vault/data hashicorp/vault server
     ```
 
-/ # export VAULT_ADDR='https://0.0.0.0:8200'
-/ # export VAULT_CACERT=/vault/certs/myvault.crt
-/ # vault operator init > /vault/file/keys
-/ # cat /vault/file/keys 
-/ # vault operator unseal $(grep 'Key 1:' /vault/file/keys | awk '{print $NF}')
-/ # vault operator unseal $(grep 'Key 2:' /vault/file/keys | awk '{print $NF}')
-/ # vault operator unseal $(grep 'Key 3:' /vault/file/keys | awk '{print $NF}')
+## # export VAULT_ADDR='https://0.0.0.0:8200'
+## # export VAULT_CACERT=/vault/certs/myvault.crt
+## # vault operator init > /vault/file/keys
+## # cat /vault/file/keys 
+## # vault operator unseal $(grep 'Key 1:' /vault/file/keys | awk '{print $NF}')
+## # vault operator unseal $(grep 'Key 2:' /vault/file/keys | awk '{print $NF}')
+## # vault operator unseal $(grep 'Key 3:' /vault/file/keys | awk '{print $NF}')
